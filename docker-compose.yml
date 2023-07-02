@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  yacht:
+    image: selfhostedpro/yacht
+    container_name: yacht
+    restart: unless-stopped
+    ports:
+      - "8200:8000"
+    volumes:
+      - yacht:/config
+      - /var/run/docker.sock:/var/run/docker.sock
+
+
+volumes:
+  yacht:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /mnt/respaldo/datos/yacht
+
+
+###  Mapeo de Puertos
+##   8200 : yacht : Administrador de contenedores : admin@yacht.local : pass
